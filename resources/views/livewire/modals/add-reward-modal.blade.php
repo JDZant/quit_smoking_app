@@ -37,6 +37,7 @@
                                         Add
                                     </button>
                                 </div>
+
                                 <div class="d-flex border-top pt-3 pb-3 justify-content-between  mt-3">
                                     <div class="w-75 mr-3 mt-3">
                                         <label for="rewardImage">Upload picture of your reward!</label>

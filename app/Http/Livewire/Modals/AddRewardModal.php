@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AddRewardModal extends Component
 {

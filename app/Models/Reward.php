@@ -8,8 +8,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
- * @method static whereQuitAttemptId(mixed $id)
- * @method static whereIn(string $string, $rewards)
+ * @method whereQuitAttemptId(mixed $id)
+ * @method whereIn(string $string, $rewards)
+ * @method findOrFail(int $id)
  */
 class Reward extends Model implements HasMedia
 {
