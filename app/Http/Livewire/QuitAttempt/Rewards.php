@@ -5,9 +5,10 @@ namespace App\Http\Livewire\QuitAttempt;
 use App\Models\QuitAttempt;
 use App\Models\Reward;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\View;
 use Livewire\Component;
-
 
 class Rewards extends Component
 {
@@ -38,13 +39,15 @@ class Rewards extends Component
         }
     }
 
-
+    /**
+     * @return void
+     */
     public function setTimeLine(): void
     {
         $this->startDate = now();
         $currentDate = $this->startDate->copy();
 
-        if($this->scale === 'year'){
+        if ($this->scale === 'year') {
             $this->endDate = $this->startDate->copy()->endOfYear()->addYears(4);
         } else {
             $this->endDate = $this->startDate->copy()->endOfYear();
@@ -72,6 +75,10 @@ class Rewards extends Component
         }
     }
 
+    /**
+     * @param $date
+     * @return void
+     */
     public function setModalData($date): void
     {
         $dateObj = Carbon::parse($date);
@@ -79,7 +86,7 @@ class Rewards extends Component
         $startOfWeek = $dateObj->copy()->startOfWeek();
         $endOfWeek = $dateObj->copy()->endOfWeek();
 
-        if($this->scale == 'week'){
+        if ($this->scale == 'week') {
             $message = 'Select a day to add a reward';
             $rewards = Reward::whereQuitAttemptId($this->quitAttempt->id)
                 ->whereBetween('date', [$startOfWeek->toDateString(), $endOfWeek->toDateString()])
@@ -90,11 +97,9 @@ class Rewards extends Component
         $formattedDate = $dateObj->toDateString();
 
         $this->emit('set-modal', $message, $formattedDate, $this->quitAttempt->id, $rewards);
-
-
     }
 
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function render()
     {
         $this->setTimeLine();
         return view('livewire.quit-attempt.rewards');

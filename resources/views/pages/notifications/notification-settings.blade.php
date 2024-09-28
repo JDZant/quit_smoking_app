@@ -30,7 +30,7 @@
                         </div>
 
                         <!-- Email Notifications Toggle -->
-                        <div class="form-group bg-danger">
+                        <div class="form-group">
                             <div class="custom-control custom-switch">
                                 <input type="hidden" name="email_notifications" value="0">
                                 <input type="checkbox" class="custom-control-input ml-3" id="email_notifications"

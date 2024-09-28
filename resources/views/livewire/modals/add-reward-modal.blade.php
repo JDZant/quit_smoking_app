@@ -5,7 +5,6 @@
          aria-labelledby="failModalLabel"
          aria-hidden="true"
          style="background: rgba(0,0,0,0.5);">
-        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="p-3">

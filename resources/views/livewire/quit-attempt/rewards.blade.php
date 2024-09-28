@@ -1,7 +1,7 @@
 <div class="w-100">
     <div class="d-flex justify-content-between p-3">
         <div class="d-flex flex-column w-100">
-            <div class=" d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
                 <h1>Rewards</h1>
             </div>
             <div class="d-flex justify-content-center w-100">

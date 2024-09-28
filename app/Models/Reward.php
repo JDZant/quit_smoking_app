@@ -2,20 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+/**
+ * @method static whereQuitAttemptId(mixed $id)
+ */
 class Reward extends Model implements HasMedia
 {
-    use HasFactory;
     use InteractsWithMedia;
     protected $guarded = [];
 
     //relations
-    public function quitAttempt(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function quitAttempt(): BelongsTo
     {
         return $this->belongsTo(quitAttempt::class);
     }
