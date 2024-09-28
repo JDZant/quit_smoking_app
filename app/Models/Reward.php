@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @method static whereQuitAttemptId(mixed $id)
+ * @method static whereIn(string $string, $rewards)
  */
 class Reward extends Model implements HasMedia
 {

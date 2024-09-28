@@ -6,12 +6,10 @@ use App\Models\Reward;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Masmerise\Toaster\Toastable;
 use Masmerise\Toaster\Toaster;
 
 class AddRewardModal extends Component
 {
-
     use WithFileUploads;
 
     public string $date;
@@ -48,8 +46,8 @@ class AddRewardModal extends Component
 
     public function removeImage(): void
     {
-        $this->rewardImagePreview = null; // Remove/reset the image preview
-        $this->rewardImage = null; // Also, reset the associated image variable if necessary
+        $this->rewardImagePreview = null;
+        $this->rewardImage = null;
     }
 
     public function getBase64ImageString(): string
@@ -57,9 +55,9 @@ class AddRewardModal extends Component
         return 'data:image/png;base64,' . base64_encode(file_get_contents($this->rewardImage->getRealPath()));
     }
 
-
     //TODO this is quickfix. SelectedDay and should be stored in the same variable
-    public function setSelectedDay($day) {
+    public function setSelectedDay($day): void
+    {
         $this->selectedDay = $this->selectedDay === $day ? null : $day;
         $this->date = $day;
     }
@@ -84,7 +82,7 @@ class AddRewardModal extends Component
 
     public function isDateToday($day): string
     {
-        return Carbon::parse($day)->format('d-m-Y') ===  Carbon::now()->format('d-m-Y') ? 'disabled' : '';
+        return Carbon::parse($day)->format('d-m-Y') === Carbon::now()->format('d-m-Y') ? 'disabled' : '';
     }
 
     public function closeModal()
@@ -116,20 +114,17 @@ class AddRewardModal extends Component
 
         $this->rewardName = '';
         Toaster::success('Reward added!');
-
     }
 
     public function deleteReward(int $id): void
     {
-        Reward::find($id)->delete();
-
-        $this->rewards = $this->rewards->filter(function($reward) use ($id) {
+        Reward::findOrFail($id)->delete();
+        $this->rewards = $this->rewards->filter(function ($reward) use ($id) {
             return $reward->id !== $id;
         });
     }
 
-
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function render()
     {
         return view('livewire.modals.add-reward-modal');
     }
